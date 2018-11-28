@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PackBag.Models;
+using PackerTracker.Models;
 
 namespace PackerTracker.Controllers
 {
