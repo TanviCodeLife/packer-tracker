@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TemplateMVC.Models
+namespace PackerTracker.Models
 {
 
 }

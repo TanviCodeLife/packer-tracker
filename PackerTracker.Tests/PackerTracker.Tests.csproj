@@ -10,6 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TemplateMVC\TemplateMVC.csproj" />
+    <ProjectReference Include="..\PackerTracker\PackerTracker.csproj" />
   </ItemGroup>
 </Project>
