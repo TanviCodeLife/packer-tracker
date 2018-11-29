@@ -16,9 +16,21 @@ namespace PackerTracker.Controllers
     [HttpGet("/bag-items/new")]
     public ActionResult New()
     {
-
       return View();
     }
 
+    [HttpPost("/bag-items")]
+    public ActionResult Create(string nameOfItem, int price, int weight, bool packed)
+    {
+      BagItem newBagItem = new BagItem(nameOfItem, price, weight, packed);
+      return RedirectToAction("Index");
+    }
+
+    [HttpGet("/bag-items/{id}")]
+    public ActionResult Show(int id)
+    {
+      BagItem foundBagItem = BagItem.Find(id);
+      return View(0);
+    }
   }
 }

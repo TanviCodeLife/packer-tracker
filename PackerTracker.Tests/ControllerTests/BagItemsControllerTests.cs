@@ -12,6 +12,19 @@ namespace PackerTracker.Tests
   {
 
     [TestMethod]
+    public void Index_ReturnsCorrectView_True()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+
+      //Act
+      ActionResult indexView = controller.Index();
+
+      //Assert
+      Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+    }
+
+    [TestMethod]
     public void Index_HasCorrectModelType_BagItemList()
     {
       //Arrange
@@ -36,6 +49,23 @@ namespace PackerTracker.Tests
 
       //Assert
       Assert.IsInstanceOfType(newView, typeof(ViewResult));
+    }
+
+    [TestMethod]
+    public void Show_HasCorrectModelType_BagItem()
+    {
+      //Arrange
+      int id = 1;
+      BagItemsController controller = new BagItemsController();
+      ViewResult findView = controller.Show(id) as ViewResult;
+
+      //Act
+      var result = findView.ViewData.Model;
+      // var result2 = findView.ViewData[""];
+
+      //Assert
+      // Assert.IsInstanceOfType(result2, typeof(BagItem));
+      Assert.IsInstanceOfType(result, typeof(BagItem));
     }
 
 
