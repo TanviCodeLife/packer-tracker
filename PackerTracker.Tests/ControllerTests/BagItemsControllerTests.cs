@@ -52,23 +52,49 @@ namespace PackerTracker.Tests
     }
 
     [TestMethod]
-    public void Show_HasCorrectModelType_BagItem()
+    public void Create_ReturnsCorrectView_True()
     {
       //Arrange
-      int id = 1;
       BagItemsController controller = new BagItemsController();
-      ViewResult findView = controller.Show(id) as ViewResult;
 
       //Act
-      var result = findView.ViewData.Model;
-      // var result2 = findView.ViewData[""];
+      string nameOfItem = "camera";
+      int price = 1000;
+      int weight = 5;
+      bool packed = true;
+      ActionResult indexView = controller.Create(nameOfItem, price, weight, packed);
 
       //Assert
-      // Assert.IsInstanceOfType(result2, typeof(BagItem));
-      Assert.IsInstanceOfType(result, typeof(BagItem));
+      Assert.IsInstanceOfType(indexView, typeof(RedirectToActionResult));
     }
 
 
-  }
+    [TestMethod]
+    public void Show_HasCorrectModelType_BagItem()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+      BagItem testBagItem = new BagItem("camera", 1, 2, true);
+      ViewResult findView = controller.Show(testBagItem.GetId()) as ViewResult;
 
+      //Act
+      var result = findView.ViewData.Model;
+
+      //Assert
+      Assert.IsInstanceOfType(result, typeof(BagItem));
+    }
+
+    [TestMethod]
+    public void Destroy_ReturnsCorrectView_True()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+
+      //Act
+      ActionResult destroyView = controller.Destroy();
+
+      //Assert
+      Assert.IsInstanceOfType(destroyView, typeof(ViewResult));
+    }
+  }
 }
