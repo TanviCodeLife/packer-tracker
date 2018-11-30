@@ -15,10 +15,11 @@ namespace PackerTracker.Controllers
       //return View(0); Fail CorrectModelType Test
     }
 
-    [HttpGet("/bag-items/new")]
-    public ActionResult New()
+    [HttpGet("/bags/{bagId}/bag-items/new")]
+    public ActionResult New(int bagId)
     {
-      return View();
+      Bag bag = Bag.Find(bagId);
+      return View(bag);
       // return new EmptyResult(); Fail CorrectView test
     }
 
@@ -28,14 +29,19 @@ namespace PackerTracker.Controllers
       BagItem newBagItem = new BagItem(nameOfItem, price, weight, packed);
       return RedirectToAction("Index");
       //return new EmptyResult(); Fail CorrectActionType test
-      //return RedirectToAction("null"); //Fail RedirectsToCorrectAction test
+      //return RedirectToAction("null"); Fail RedirectsToCorrectAction test
     }
 
-    [HttpGet("/bag-items/{id}")]
-    public ActionResult Show(int id)
+    [HttpGet("/bags/{bagId}/bag-items/{bagItemId}")]
+    public ActionResult Show(int bagId, int bagItemId)
     {
-      BagItem foundBagItem = BagItem.Find(id);
+      BagItem foundBagItem = BagItem.Find(bagItemIdid);
+      Bag foundBag = Bag.Find(bagId);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("bag", foundBag);
+      model.Add("item", foundBagItem);
       return View(foundBagItem);
+      // return new EmptyResult(); Fails Correct View test
       //return View(0); Fail CorrectModelType Test
     }
 

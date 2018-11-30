@@ -86,20 +86,39 @@ namespace PackerTracker.Tests
       Assert.AreEqual(result, "Index");
     }
 
-
     [TestMethod]
-    public void Show_HasCorrectModelType_BagItem()
+    public void Show_ReturnsCorrectView_True()
     {
       //Arrange
       BagItemsController controller = new BagItemsController();
+      Bag testBag = new Bag("Purse");
       BagItem testBagItem = new BagItem("camera", 1, 2, true);
-      ViewResult findView = controller.Show(testBagItem.GetId()) as ViewResult;
+      testBag.AddBagItem(testBagItem);
 
       //Act
-      var result = findView.ViewData.Model;
+      ActionResult showView = controller.Show(testBag.GetId(), testBagItem.GetId());
 
       //Assert
-      Assert.IsInstanceOfType(result, typeof(BagItem));
+      Assert.IsInstanceOfType(showView, typeof(ViewResult));
+    }
+
+    [TestMethod]
+    public void Show_HasCorrectModelType_Dictionary()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+      Bag testBag = new Bag("Purse");
+      BagItem testBagItem = new BagItem("camera", 1, 2, true);
+      testBag.AddBagItem(testBagItem);
+      Console.WriteLine(testBag.GetId());
+      ViewResult showView = controller.Show(testBag.GetId(), testBagItem.GetId()) as ViewResult;
+
+      //Act
+      var result = showView.ViewData.Model;
+      Console.WriteLine(result.GetType());
+      Console.WriteLine(typeof(Dictionary<string, object>));
+      //Assert
+      Assert.AreEqual(result.GetType(), typeof(Dictionary<string, object>));
     }
 
     [TestMethod]

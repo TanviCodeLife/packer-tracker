@@ -53,5 +53,10 @@ namespace PackerTracker.Models
       _bagItems.Add(bagItem);
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
+
   }
 }

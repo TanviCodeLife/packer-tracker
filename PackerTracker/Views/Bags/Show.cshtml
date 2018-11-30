@@ -1,0 +1,15 @@
+<h3>Here are all the bag items in this bag:</h3>
+
+<ol>
+@foreach (BagItem item in @Model["bag-items"])
+{
+  <li><a href='/bags/@Model["bag"].GetId()/bag-items/@item.GetId()'>@item.GetNameOfItem()</a></li>
+  <li>@item.GetPrice()</li>
+  <li>@item.GetWeight()</li>
+  <li>@item.GetPacked()</li>
+}
+</ol>
+
+<p><a href='/bags/@Model["bag"].GetId()/bag-items/new'>Add a new item</a></p>
+<p><a href='/bags'>Return to bag list</a></p>
+<p><a href='/'>Return to Main Page</a></p>
