@@ -27,7 +27,8 @@ namespace PackerTracker.Controllers
     {
       BagItem newBagItem = new BagItem(nameOfItem, price, weight, packed);
       return RedirectToAction("Index");
-      //return new EmptyResult(); Fail CorrectView test
+      //return new EmptyResult(); Fail CorrectActionType test
+      //return RedirectToAction("null"); //Fail RedirectsToCorrectAction test
     }
 
     [HttpGet("/bag-items/{id}")]

@@ -52,7 +52,7 @@ namespace PackerTracker.Tests
     }
 
     [TestMethod]
-    public void Create_ReturnsCorrectView_True()
+    public void Create_ReturnsCorrectActionType_True()
     {
       //Arrange
       BagItemsController controller = new BagItemsController();
@@ -66,6 +66,24 @@ namespace PackerTracker.Tests
 
       //Assert
       Assert.IsInstanceOfType(indexView, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void Create_RedirectsToCorrectAction_Index()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+      string nameOfItem = "camera";
+      int price = 1000;
+      int weight = 5;
+      bool packed = true;
+      RedirectToActionResult actionResult = controller.Create(nameOfItem, price, weight, packed) as RedirectToActionResult;
+
+      //Act
+      string result = actionResult.ActionName;
+
+      //Assert
+      Assert.AreEqual(result, "Index");
     }
 
 

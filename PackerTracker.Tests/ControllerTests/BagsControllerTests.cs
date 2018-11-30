@@ -23,3 +23,19 @@ namespace PackerTracker.Tests
       //Assert
       Assert.IsInstanceOfType(indexView, typeof(ViewResult));
     }
+
+    [TestMethod]
+    public void Index_HasCorrectModelType_BagItemList()
+    {
+      //Arrange
+      BagItemsController controller = new BagItemsController();
+      ViewResult indexView = controller.Index() as ViewResult;
+
+      //Act
+      var result = indexView.ViewData.Model;
+
+      //Assert
+      Assert.IsInstanceOfType(result, typeof(List<BagItem>));
+    }
+  }
+}

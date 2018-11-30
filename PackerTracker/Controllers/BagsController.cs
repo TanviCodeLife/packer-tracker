@@ -11,8 +11,8 @@ namespace PackerTracker.Controllers
     public ActionResult Index()
     {
       List<Bag> allBags = Bag.GetAll();
-      // return View(allBags);
-      return new EmptyResult();
+      return View(allBags);
+      // return new EmptyResult();
     }
   }
 }
